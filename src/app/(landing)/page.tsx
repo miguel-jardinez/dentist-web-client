@@ -4,9 +4,6 @@ export default function Home() {
   return (
     <div className="h-full">
       <HeroCarousel />
-      <HeroOne />
-      <HeroTwo />
-      <HeroThree />
       <AboutUs />
       <BannerOne />
       <StepsSection /> 
