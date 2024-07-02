@@ -70,7 +70,7 @@ export const SectionServices = () => {
       <h3 className="text-center my-4">Lorem, ipsum dolor.</h3>
       <div className="lg:flex flex-wrap">
         {
-          services.map((item) => <Services {...item}/>)
+          services.map((item) => <Services key={item.title} {...item}/>)
         }
       </div>
     </section>

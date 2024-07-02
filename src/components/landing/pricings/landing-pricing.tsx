@@ -19,7 +19,7 @@ export const LandingPricing = () => {
         <div className="space-y-5 my-6 text-primary">
           {mostPopular.map((item) => {
             return (
-              <div>
+              <div key={item}>
                 <div className="flex items-center space-x-3">
                   <FaCheckCircle />
                   <small className="m-0 p-0">{item}</small>
@@ -61,7 +61,7 @@ export const LandingPricing = () => {
         <div className="space-y-5 my-6 text-white">
           {mostPopular.map((item) => {
             return (
-              <div>
+              <div key={item}>
                 <div className="flex items-center space-x-3">
                   <FaCheckCircle />
                   <small className="m-0 p-0">{item}</small>
@@ -99,7 +99,7 @@ export const LandingPricing = () => {
         <div className="space-y-5 my-6 text-primary">
           {mostPopular.map((item) => {
             return (
-              <div>
+              <div key={item}>
                 <div className="flex items-center space-x-3">
                   <FaCheckCircle />
                   <small className="m-0 p-0">{item}</small>
