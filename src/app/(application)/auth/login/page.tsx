@@ -1,11 +1,5 @@
-import { Button } from "@dentist/components/ui/button";
-import { Input } from "@dentist/components/ui/input";
+import { LoginPage } from "@dentist/pages/auth";
 
 export default function Home() {
-  return (
-    <div className="h-full">
-      <Button className="w-full" variant="default">Login page</Button>
-      <Input placeholder="Hola"/>
-    </div>
-  );
+  return <LoginPage />
 }

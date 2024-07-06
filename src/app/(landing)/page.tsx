@@ -2,7 +2,7 @@ import { HeroCarousel, AboutUs, BannerOne, DentistMap, StepsSection, SectionServ
 
 export default function Home() {
   return (
-    <div className="h-full">
+    <>
       <HeroCarousel />
       <AboutUs />
       <BannerOne />
@@ -10,6 +10,6 @@ export default function Home() {
       <SectionServices />
       <LandingPricing />
       <DentistMap />
-    </div>
+    </>
   );
 }
