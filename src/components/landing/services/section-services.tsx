@@ -1,63 +1,81 @@
+import { whatsAppMessage } from "@dentist/utils/whatsapp-message"
+import Image from "next/image"
+import Link from "next/link"
 
 const services = [
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Limpieza dental'),
+    image: '/service-01.jpg',
+    title: 'Limpieza dental',
+    description: 'Te incluimos el pulido y aplicación de flúor para un completo cuidado dental.'
   },
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Blanqueamiento dental'),
+    image: '/service-02.jpg',
+    title: 'Blanqueamiento dental',
+    description: 'Hará que luzcas una sonrisa naturalmente más blanca y radiante.'
   },
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Resinas dnetales'),
+    image: '/service-03.jpg',
+    title: 'Resinas dentales',
+    description: 'Este material nos ayuda a restaurar dientes con algún tipo de daño con la ventaja de ser estético y compatible con tus dientes.'
   },
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Extracciones'),
+    image: '/service-04.jpg',
+    title: 'Extracciones',
+    description: 'Consiste en un tratamiento de última instancia o de urgencia con respecto a un diente dañado o con dolor como en el caso de las muelas del juicio.'
   },
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Carillas de resin'),
+    image: '/service-05.jpg',
+    title: 'Carillas de resina',
+    description: 'Éstas te generan un cambio estético en el tamaño, forma y color de tus dientes sin desgastarlos. '
   },
   {
-    image: '',
-    title: '',
-    description: ''
+    link: whatsAppMessage('Prótesis removible'),
+    image: '/service-06.jpg',
+    title: 'Prótesis removible',
+    description: 'Ya sean totales o parciales son una buena opción para reemplazar dientes perdidos, facilitan la higiene y cuidado de los demás dientes.'
   },
 ]
 
-const Services = ({ image, title, description } : {image: string, title: string, description: string}) => {
+const Services = ({ image, title, description, link } : { image: string, title: string, description: string, link: string }) => {
   return (
     <article className="relative w-full lg:w-1/3 p-4 lg:mb-10">
-      <div className="h-[300px] mb-2">
-        <div className="h-full w-full lg:w-3/5 bg-red-200 rounded-lg">
-
+      <Link href={link} target="_blank">
+        <div className="h-[300px] mb-2">
+          <div className="h-full w-full lg:w-3/5 bg-red-200 rounded-lg">
+              <Image 
+                src={image}
+                alt='' 
+                width={300}
+                height={200}
+                className='w-full h-full object-cover rounded-lg'
+              />
+          </div>
         </div>
-      </div>
-      <div className="flex justify-center -mt-10">
-        <div className="
-          lg:absolute 
-          w-2/3
-          lg:w-1/2
-          text-center
-          lg:text-start
-          lg:top-[8rem]
-          lg:left-[10rem]
-          bg-white 
-          rounded-xl 
-          px-4 
-          py-2"
-        >
-          <h3 className="text-lg font-bold">Hola</h3>
-          <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, doloremque!</p>
+        <div className="flex justify-center -mt-10">
+          <div className="
+            shadow-lg
+            lg:absolute 
+            w-2/3
+            lg:w-1/2
+            text-center
+            lg:text-start
+            lg:top-[6rem]
+            lg:left-[12rem]
+            bg-white 
+            rounded-xl 
+            px-4 
+            py-2"
+          >
+            <h3 className="text-lg font-bold">{title}</h3>
+            <p className="text-sm">{description}</p>
+          </div>
         </div>
-      </div>
+      </Link>
     </article>
 
   )
@@ -66,8 +84,8 @@ const Services = ({ image, title, description } : {image: string, title: string,
 export const SectionServices = () => {
   return (
     <section id="services" className="sm:container sm:m-auto py-8">
-      <h4 className="text-center">Lorem, ipsum.</h4>
-      <h3 className="text-center my-4">Lorem, ipsum dolor.</h3>
+      <h4 className="text-center">Más Populares</h4>
+      <h3 className="text-center my-2">Nuestros Servicios</h3>
       <div className="lg:flex flex-wrap">
         {
           services.map((item) => <Services key={item.title} {...item}/>)

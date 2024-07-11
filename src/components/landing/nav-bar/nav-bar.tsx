@@ -9,7 +9,7 @@ import React from 'react'
 
 const NavBarDesktop = () => {
   return (
-    <header className='hidden lg:block h-20 bg-white shadow-lg w-full z-20'>
+    <header className='h-20 bg-white shadow-lg w-full'>
       <div className='container m-auto flex items-center justify-between h-full'>
         <div className='flex items-center'>
           <h2 className='font-bold text-blue-900'>Perla De Esmalte</h2>
@@ -87,7 +87,6 @@ const NavBarMobile = () => {
 export const NavBar = () => {
   return (
     <>
-      <NavBarMobile />
       <NavBarDesktop />
     </>
   )

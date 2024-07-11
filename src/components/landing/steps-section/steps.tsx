@@ -3,8 +3,59 @@ import { MdCopyAll, MdOutlineDateRange } from "react-icons/md";
 import { IconType } from "react-icons";
 import { FaCheckCircle } from "react-icons/fa";
 
+const labelTrusth = [
+  {
+    id: 1,
+    label: 'Profesionalismo y técnicas actualizadas de calidad'
+  },
+  {
+    id: 2,
+    label: 'Ética y honestidad sin recomendaciones innecesarias.'
+  },
+  {
+    id: 3,
+    label: 'Trato empático y cuidadoso en los procedimientos'
+  },
+  {
+    id: 4,
+    label: 'Horarios flexibles y facilidad para agendar citas.'
+  },
+  {
+    id: 5,
+    label: 'Costos y formas de pago accesibles'
+  },
+  {
+    id: 6,
+    label: 'Compromiso con la satisfacción del paciente'
+  }
+]
 
-const labelTrusth = ['Lorem, ipsum.', 'Lorem, ipsum.', 'Lorem, ipsum.', 'Lorem, ipsum.', 'Lorem, ipsum.', 'Lorem, ipsum.']
+const steps = [
+  {
+    id: 1,
+    title: "Contactanos" ,
+    description: "Mandanos un mensaje para programar tu cita." ,
+    Icon: FaRegMessage,
+  },
+  {
+    id: 2,
+    title: "Información personal" ,
+    description: "Te pediremos tus datos personales y detalles sobre el motivo de tu consulta.",
+    Icon: MdCopyAll,
+  },
+  {
+    id: 3,
+    title: "Selecciona tu horario" ,
+    description: "Selecciona el día y la hora de tu consulta",
+    Icon: MdOutlineDateRange,
+  },
+  {
+    id: 4,
+    title: "Confirmación",
+    description: "Te solicitamos la confirmación de tu cita un dia antes, nosotros te mandamos un mensaje.",
+    Icon: FaCheckCircle,
+  },
+]
 
 
 
@@ -15,7 +66,7 @@ const Step = ({ title, description, Icon }: { title: string, description: string
         <Icon size={25} className="text-primary" />
       </div>
       <div>
-        <h6 className="font-bold mb-2">{title}</h6>
+        <h6 className="font-bold mb-1">{title}</h6>
         <p>{description}</p>
       </div>
     </div>
@@ -26,43 +77,39 @@ export const StepsSection = () => {
   return (
     <section id="how-schedule" className="container m-auto py-8">
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-7">
-        <div className="flex flex-col justify-center space-y-5">
-          <h5>Lorem ipsum dolor sit amet.</h5>
-          <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quae nulla minus illum ipsam cumque adipisci dolor aut quidem vel.</p>
+        <div className="flex flex-col justify-center">
+          <div className="space-y-4">
+            <h5>Estamos comprometidos contigo.</h5>
+            <h3>Queremos verte sonreir y mantener tu salud bucal</h3>
+            <p>Por eso estamos seguros de que lo que te ofrecemos en el servicio que te brindamos es lo que necesitas y que es lo que  siempre has estado buscado.</p>
+          </div>
 
-          <div className="flex flex-wrap lg:w-2/3 w-full">
-            {labelTrusth.map((item, index) => (
-              <div key={index} className="w-1/2 p-2">
-                <div className="flex items-center">
-                  <FaCheckCircle className="text-green-500" />
-                  <h6 className="ml-2 font-semibold">{item}</h6>
+          <div className="flex flex-wrap w-full mt-10">
+            {labelTrusth.map((item) => (
+              <div key={item.id} className="w-1/2 p-2">
+                <div className="flex items-start">
+                  <div className="w-[5%] mt-1">
+                    <FaCheckCircle className="text-green-500 w-full h-full" />
+                  </div>
+                  <div className="w-[95%]">
+                    <h6 className="ml-2 font-semibold">{item.label}</h6>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className="space-y-4">
-        <Step 
-            title="Lorem, ipsum." 
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis magni cumque in repudiandae soluta sunt." 
-            Icon={FaRegMessage}
-          />
-          <Step 
-            title="Lorem, ipsum." 
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis magni cumque in repudiandae soluta sunt." 
-            Icon={MdCopyAll}
-          />
-          <Step 
-            title="Lorem, ipsum." 
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis magni cumque in repudiandae soluta sunt." 
-            Icon={MdOutlineDateRange}
-          />
-          <Step 
-            title="Lorem, ipsum." 
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis magni cumque in repudiandae soluta sunt." 
-            Icon={FaCheckCircle}
-          />
+          {
+            steps.map((items) => (
+              <Step
+                key={items.id}
+                title={items.title}
+                description={items.description}
+                Icon={items.Icon}
+              />
+            ))
+          }
         </div>
       </div>
     </section>
