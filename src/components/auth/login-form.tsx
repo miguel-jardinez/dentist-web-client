@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { loginServerAction } from '@dentist/pages/auth'
 import { useRouter } from "next/navigation"
 
 
@@ -21,8 +20,8 @@ export const LoginForm = () => {
   })
 
   const onSubmit = async (values: LoginSchemaType) => {
-    await loginServerAction(values)
-    router.replace('/dashboard')
+    // await loginServerAction(values)
+    // router.replace('/dashboard')
   }
 
   return (

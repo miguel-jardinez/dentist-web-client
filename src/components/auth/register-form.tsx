@@ -1,6 +1,5 @@
 'use client'
 
-import { registerServerAction } from "@dentist/pages/auth/actions"
 import { RegisterSchema, RegisterSchemaType } from '@dentist/utils/schema/auth/auth-schema'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -20,7 +19,7 @@ export const RegisterForm = () => {
   })
 
   const onSubmit = async (values: RegisterSchemaType) => {
-    await registerServerAction(values)
+    // await registerServerAction(values)
   }
 
   return (

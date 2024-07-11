@@ -6,7 +6,6 @@ import { Input } from '@dentist/components/ui/input'
 import { CreatePageSchema, CreatePageSchemaType } from '@dentist/utils/schema/dashboard/dashboard-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { createPageServerAction } from './actions'
 import { useRouter } from 'next/navigation'
 
 export const CreatePageContent = () => {
@@ -21,9 +20,9 @@ export const CreatePageContent = () => {
   });
 
   const onSubmit = async (values: CreatePageSchemaType) => {
-    await createPageServerAction(values)
-    form.reset()
-    router.back()
+    // await createPageServerAction(values)
+    // form.reset()
+    // router.back()
   }
 
   return (

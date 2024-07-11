@@ -7,7 +7,6 @@ import { Form, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
-import { createLabelServerAction, getLabelById } from "@dentist/pages/dashboard/actions"
 import { useEffect } from "react"
 
 export const LabelContentForm = () => {
@@ -27,20 +26,20 @@ export const LabelContentForm = () => {
   })
 
   const onHandleSubmit = async (data: CreateLabelSchemaType) => {
-    await createLabelServerAction(data)
+    // await createLabelServerAction(data)
 
     form.reset()
     router.back()
   }
 
   const fillLabelData = async (labelId: string) => {
-    const data = await getLabelById(labelId ?? "")
+    // const data = await getLabelById(labelId ?? "")
 
-    form.reset({
-      label: data?.data.label,
-      label_id: data?.data.label_id,
-      page_id: data?.data.page_id
-    })
+    // form.reset({
+    //   label: data?.data.label,
+    //   label_id: data?.data.label_id,
+    //   page_id: data?.data.page_id
+    // })
   }
 
   useEffect(() => {
@@ -48,7 +47,7 @@ export const LabelContentForm = () => {
     if (labelId) {
       fillLabelData(labelId)
     }
-  }, [])
+  }, [labelId])
 
   return (
     <Form {...form}>

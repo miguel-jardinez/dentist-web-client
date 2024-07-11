@@ -3,12 +3,10 @@ import { Input } from '@dentist/components/ui/input'
 import Link from 'next/link'
 
 import { FaSearch } from 'react-icons/fa'
-import { getPagesServerAction } from './actions'
 
 export const ContentPage = async () => {
-  const data = await getPagesServerAction()
+  // const data = await getPagesServerAction()
 
-  console.log(data)
 
   return (
     <section>
@@ -24,7 +22,7 @@ export const ContentPage = async () => {
         </Link>
       </div>
 
-      <div className='block'>
+      {/* <div className='block'>
         {data?.data?.map((item) => {
           return (
             <>
@@ -32,7 +30,7 @@ export const ContentPage = async () => {
             </>
           )
         })}
-      </div>
+      </div> */}
     </section>
   )
 }

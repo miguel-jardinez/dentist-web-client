@@ -1,4 +1,4 @@
-import { EditorPage } from '@dentist/pages/dashboard/editor-page'
+import { EditorPage } from '@dentist/views/dashboard/editor-page'
 
 const Page = async () => {
   return <EditorPage />

@@ -1,6 +1,5 @@
 'use client'
 
-import { getLabelsByPageId } from "@dentist/pages/dashboard/actions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
 
@@ -20,9 +19,9 @@ export const LabelCardList = ({ id } : LabelCardListProps) => {
   }
 
   const getLabels = async () => {
-    const data = await getLabelsByPageId(id)
+    // const data = await getLabelsByPageId(id)
 
-    setLabels(data?.data as any ?? [])
+    // setLabels(data?.data as any ?? [])
   }
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export const LabelCardList = ({ id } : LabelCardListProps) => {
     <>
       <div>LabelCardList</div>
       <div className="my-3">
-        {
+        {/* {
           labels.map((item) => {
             return(
               <article onClick={() => onEditLabel(item.id)} className="my-3 first:mt-0 last:mb-0 cursor-pointer ring-1 rounded-md px-8 py-4" key={item.id}>
@@ -41,7 +40,7 @@ export const LabelCardList = ({ id } : LabelCardListProps) => {
               </article>
             )
           })
-        }
+        } */}
       </div>
     </>
   )

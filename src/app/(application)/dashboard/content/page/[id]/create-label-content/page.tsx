@@ -1,4 +1,4 @@
-import { CreateLabelContent } from "@dentist/pages/dashboard/create-label-content"
+import { CreateLabelContent } from "@dentist/views/dashboard/create-label-content"
 
 const Page = () => {
   return <CreateLabelContent />
