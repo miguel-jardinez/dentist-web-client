@@ -1,11 +1,11 @@
-import { Footer } from '@dentist/components/landing/footer'
-import { NavBar } from '@dentist/components/landing/nav-bar'
+import { Footer } from '@dentist/app/(landing)/_components/footer'
+import { NavBar } from '@dentist/app/(landing)/_components/nav-bar'
 import React from 'react'
 
 const LandingLayout = ({ children } : { children: React.ReactNode }) => {
   return (
     <>
-      {/* <NavBar />  */}
+      <NavBar /> 
         { children }
       <Footer />
     </>

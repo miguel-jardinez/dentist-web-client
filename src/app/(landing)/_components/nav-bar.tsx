@@ -6,33 +6,21 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Button } from '@dentist/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
+import { whatsAppMessage } from '@dentist/utils/whatsapp-message';
 
 const NavBarDesktop = () => {
   return (
-    <header className='h-20 bg-white shadow-lg w-full'>
+    <header className='fixed bg-white shadow-lg w-full z-20 py-4'>
       <div className='container m-auto flex items-center justify-between h-full'>
         <div className='flex items-center'>
-          <h2 className='font-bold text-blue-900'>Perla De Esmalte</h2>
-          <ul className='flex space-x-8 list-none'>
-            <li>
-              
-            </li>
-            <li>
-              <Link href="#">How schedule</Link>
-            </li>
-            <li>
-              <Link href="#">Services</Link>
-            </li>
-            <li>
-              <Link href="#">Pricing</Link>
-            </li>
-            <li>
-              <Link href="#">Place</Link>
-            </li>
-          </ul>
+          <h2 className='text-sm md:text-lg font-bold text-primary'>Perla De Esmalte</h2>
         </div>
         <div>
-          <Button>Agendar cita</Button>
+          <Button  asChild>
+            <Link href={whatsAppMessage('dental')} target='_blank'>
+              Agendar cita
+            </Link>
+          </Button>
         </div>
       </div>
     </header>

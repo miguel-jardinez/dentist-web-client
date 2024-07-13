@@ -46,7 +46,7 @@ const Services = ({ image, title, description, link } : { image: string, title: 
     <article className="relative w-full lg:w-1/3 p-4 lg:mb-10">
       <Link href={link} target="_blank">
         <div className="h-[300px] mb-2">
-          <div className="h-full w-full lg:w-3/5 bg-red-200 rounded-lg">
+          <div className="h-full w-full lg:w-8/12 bg-red-200 rounded-lg">
               <Image 
                 src={image}
                 alt='' 
@@ -65,8 +65,9 @@ const Services = ({ image, title, description, link } : { image: string, title: 
             text-center
             lg:text-start
             lg:top-[6rem]
-            lg:left-[12rem]
-            bg-white 
+            lg:left-[14rem]
+            bg-primary/80
+            text-destructive-foreground
             rounded-xl 
             px-4 
             py-2"

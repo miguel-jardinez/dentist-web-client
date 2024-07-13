@@ -6,15 +6,17 @@ import React from 'react'
 
 export const HeroOne = () => {
   return (
-    <section className='h-screen lg:mb-0'>  
+    <section className='h-screen lg:mb-0 mt-14 md:mt-10'>  
       <div className='grid lg:grid-cols-2 grid-cols-1  lg:gap-4 h-full auto-rows-fr'>
         <div className='flex items-center lg:p-8 px-8'>
           <div className=''>
             <h1>Tu Sonrisa como siempre la has querido</h1>
             <h4 className='py-5'>Odontología actual para Sonrisas Radiantes</h4>
-            <Link href={whatsAppMessage('Revisión dental')} target='_blank'>
-              <Button size="lg">Reserva hoy</Button>
-            </Link>
+            <Button size="lg" asChild>
+              <Link href={whatsAppMessage('Revisión dental')} target='_blank'>
+                Reserva hoy
+              </Link>
+            </Button>
           </div>
         </div>
         <div className='h-full flex lg:items-center justify-center w-full'>
@@ -28,7 +30,7 @@ export const HeroOne = () => {
                 className='w-full h-full object-cover rounded-lg'
               />
             </div>
-            <div className='absolute left-8 lg:left-20 top-14 lg:top-[170px] rounded-lg shadow-xl w-[150px] h-[250px]  z-10'>
+            <div className='hidden md:block absolute left-8 lg:left-20 top-14 lg:top-[170px] rounded-lg shadow-xl w-[150px] h-[250px]  z-10'>
               <Image 
                 src="/hero-one-02.jpg" 
                 alt=''

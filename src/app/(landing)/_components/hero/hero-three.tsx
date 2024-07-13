@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@dentist/components/ui/avatar'
 import { Button } from '@dentist/components/ui/button'
 import { whatsAppMessage } from '@dentist/utils/whatsapp-message'
 import Image from 'next/image'
@@ -6,7 +5,7 @@ import Link from 'next/link'
 
 export const HeroThree = () => {
   return (
-  <section className='h-screen relative'>
+  <section className='h-screen relative mt-20 md:mt-0'>
         <div className='grid lg:grid-cols-2 grid-cols-1 h-full px-8 py-0 lg:p-10 auto-rows-fr'>
           <div className='flex flex-col justify-center items-start'>
             <h1>Una vida sin dolor dental es una vida más feliz.</h1>

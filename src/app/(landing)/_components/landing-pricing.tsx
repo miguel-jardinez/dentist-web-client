@@ -68,7 +68,7 @@ const cards = []
 export const LandingPricing = () => {
   return (
     <section id="pricings" className="lg:h-[650px] container m-auto lg:flex gap-10 my-10">
-      <article className="lg:w-1/3 flex flex-col justify-between bg-white h-full rounded-lg px-10 py-10 lg:px-16 lg:py-20 text-center scale-y-95">
+      <article className="lg:w-1/3 flex flex-col justify-between bg-white h-full shadow-md border border-slate-200 rounded-lg px-10 py-10 lg:px-16 lg:py-20 text-center scale-y-95">
         <div className="text-primary">
           <h3>Individual</h3>
           <h6 className="my-4">Cuida de tu propia salud bucal</h6>
@@ -82,7 +82,7 @@ export const LandingPricing = () => {
               <div key={item.id}>
                 <div className="flex space-x-3">
                   <FaCheckCircle />
-                  <small className="m-0 p-0">{item.label}</small>
+                  <small className="m-0 p-0 text-left">{item.label}</small>
                 </div>
               </div>
             )
@@ -152,7 +152,7 @@ export const LandingPricing = () => {
         </div>
       </article>
 
-      <article className="lg:w-1/3 flex flex-col justify-between bg-white h-full rounded-lg px-10 py-10 lg:px-16 lg:py-20 text-center scale-y-95">
+      <article className="lg:w-1/3 flex flex-col justify-between bg-white h-full shadow-md border border-slate-200 rounded-lg px-10 py-10 lg:px-16 lg:py-20 text-center scale-y-95">
         <div className="text-primary">
           <h3>Pareja</h3>
           <h6 className="my-4">Para 2 personas</h6>
@@ -166,7 +166,7 @@ export const LandingPricing = () => {
               <div key={item.id}>
                 <div className="flex items-center space-x-3">
                   <FaCheckCircle />
-                  <small className="m-0 p-0">{item.label}</small>
+                  <small className="m-0 p-0 text-left">{item.label}</small>
                 </div>
               </div>
             )
