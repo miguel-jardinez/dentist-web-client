@@ -10,7 +10,7 @@ import { whatsAppMessage } from '@dentist/utils/whatsapp-message';
 
 const NavBarDesktop = () => {
   return (
-    <header className='fixed bg-white shadow-lg w-full z-20 py-4'>
+    <header className='fixed bg-background border-b border-grey-50 shadow w-full z-20 py-4'>
       <div className='container m-auto flex items-center justify-between h-full'>
         <div className='flex items-center'>
           <h2 className='text-sm md:text-lg font-bold text-primary'>Perla De Esmalte</h2>

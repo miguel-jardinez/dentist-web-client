@@ -81,7 +81,9 @@ export const LandingPricing = () => {
             return (
               <div key={item.id}>
                 <div className="flex space-x-3">
-                  <FaCheckCircle />
+                  <div className="w-4 h-4">
+                    <FaCheckCircle />
+                  </div>
                   <small className="m-0 p-0 text-left">{item.label}</small>
                 </div>
               </div>
@@ -125,7 +127,9 @@ export const LandingPricing = () => {
             return (
               <div key={item.id}>
                 <div className="flex space-x-3">
-                  <FaCheckCircle />
+                  <div className="w-4 h-4">
+                    <FaCheckCircle />
+                  </div>
                   <small className="m-0 p-0 text-start">{item.label}</small>
                 </div>
               </div>
@@ -165,7 +169,9 @@ export const LandingPricing = () => {
             return (
               <div key={item.id}>
                 <div className="flex items-center space-x-3">
-                  <FaCheckCircle />
+                  <div className="w-4 h-4">
+                    <FaCheckCircle />
+                  </div>
                   <small className="m-0 p-0 text-left">{item.label}</small>
                 </div>
               </div>
