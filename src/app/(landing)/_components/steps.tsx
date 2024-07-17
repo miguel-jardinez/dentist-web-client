@@ -2,6 +2,7 @@ import { FaRegMessage } from "react-icons/fa6";
 import { MdCopyAll, MdOutlineDateRange } from "react-icons/md";
 import { IconType } from "react-icons";
 import { FaCheckCircle } from "react-icons/fa";
+import { AnimatedReveal } from "./animated-reveal";
 
 const labelTrusth = [
   {
@@ -66,7 +67,7 @@ const Step = ({ title, description, Icon }: { title: string, description: string
         <Icon size={25} className="text-primary" />
       </div>
       <div>
-        <h6 className="font-bold mb-1">{title}</h6>
+        <h6 className="font-bold text-lg text-red-400 mb-1">{title}</h6>
         <p>{description}</p>
       </div>
     </div>
@@ -75,43 +76,45 @@ const Step = ({ title, description, Icon }: { title: string, description: string
 
 export const StepsSection = () => {
   return (
-    <section id="how-schedule" className="container m-auto py-8">
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-7">
-        <div className="flex flex-col justify-center">
-          <div className="space-y-4">
-            <h5>Estamos comprometidos contigo.</h5>
-            <h3>Queremos verte sonreir y mantener tu salud bucal</h3>
-            <p>Por eso estamos seguros de que lo que te ofrecemos en el servicio que te brindamos es lo que necesitas y que es lo que  siempre has estado buscado.</p>
-          </div>
+    <AnimatedReveal>
+      <section id="how-schedule" className="container m-auto py-8">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-7">
+          <div className="flex flex-col justify-center">
+            <div className="space-y-3">
+              <h4>Estamos comprometidos contigo.</h4>
+              <h3 className="md:text-5xl font-bold">Queremos verte <span className="text-red-400">sonreir</span> y mantener tu <span className="text-red-400">salud bucal</span></h3>
+              <p>Por eso estamos seguros de que lo que te ofrecemos en el servicio que te brindamos es lo que necesitas y que es lo que  siempre has estado buscado.</p>
+            </div>
 
-          <div className="flex flex-wrap w-full mt-10">
-            {labelTrusth.map((item) => (
-              <div key={item.id} className="w-1/2 p-2">
-                <div className="flex items-start">
-                  <div className="w-[5%] mt-1">
-                    <FaCheckCircle className="text-green-500 w-full h-full" />
-                  </div>
-                  <div className="w-[95%]">
-                    <h6 className="ml-2 font-semibold">{item.label}</h6>
+            <div className="flex flex-wrap w-full mt-10">
+              {labelTrusth.map((item) => (
+                <div key={item.id} className="w-1/2 p-2">
+                  <div className="flex items-start">
+                    <div className="w-3 md:w-[5%] mt-1">
+                      <FaCheckCircle className="text-red-400 w-full h-full" />
+                    </div>
+                    <div className="w-[95%]">
+                      <h6 className="ml-2 font-semibold">{item.label}</h6>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+          <div className="space-y-4">
+            {
+              steps.map((items) => (
+                <Step
+                  key={items.id}
+                  title={items.title}
+                  description={items.description}
+                  Icon={items.Icon}
+                />
+              ))
+            }
           </div>
         </div>
-        <div className="space-y-4">
-          {
-            steps.map((items) => (
-              <Step
-                key={items.id}
-                title={items.title}
-                description={items.description}
-                Icon={items.Icon}
-              />
-            ))
-          }
-        </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedReveal>
   )
 }

@@ -8,7 +8,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.descrition,
+  icons: {
+    icon: '/logo.png'
+  }
 };
+
 
 export default function RootLayout({
   children,
@@ -16,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
       <body className={inter.className}>{children}</body>
     </html>
   );

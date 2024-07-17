@@ -1,6 +1,9 @@
+'use client'
 import { whatsAppMessage } from "@dentist/utils/whatsapp-message"
 import Image from "next/image"
 import Link from "next/link"
+import { AnimatedReveal } from "./animated-reveal"
+import { motion, Variants } from "framer-motion"
 
 const services = [
   {
@@ -41,19 +44,46 @@ const services = [
   },
 ]
 
-const Services = ({ image, title, description, link } : { image: string, title: string, description: string, link: string }) => {
+const animationContainer: Variants = {
+  hidden: {
+    opacity: 1
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.6
+    }
+  }
+}
+const item: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
+
+
+const Services = ({ image, title, description, link }: { image: string, title: string, description: string, link: string }) => {
   return (
-    <article className="relative w-full lg:w-1/3 p-4 lg:mb-10">
+    <motion.article variants={item} className="relative w-full lg:w-1/3 p-4 lg:mb-10">
       <Link href={link} target="_blank">
         <div className="h-[300px] mb-2">
           <div className="h-full w-full lg:w-8/12 bg-red-200 rounded-lg">
-              <Image 
-                src={image}
-                alt='' 
-                width={300}
-                height={200}
-                className='w-full h-full object-cover rounded-lg'
-              />
+            <Image
+              src={image}
+              alt=''
+              width={300}
+              height={200}
+              className='w-full h-full object-cover rounded-lg'
+            />
           </div>
         </div>
         <div className="flex justify-center -mt-10">
@@ -66,32 +96,34 @@ const Services = ({ image, title, description, link } : { image: string, title: 
             lg:text-start
             lg:top-[6rem]
             lg:left-[14rem]
-            bg-primary/80
+            bg-primary/90
             text-destructive-foreground
             rounded-xl 
             px-4 
             py-2"
           >
-            <h3 className="text-lg font-bold">{title}</h3>
+            <h3 className="text-xl mb-2 font-bold">{title}</h3>
             <p className="text-sm">{description}</p>
           </div>
         </div>
       </Link>
-    </article>
+    </motion.article>
 
   )
 }
 
 export const SectionServices = () => {
   return (
-    <section id="services" className="sm:container sm:m-auto py-8">
-      <h4 className="text-center">Más Populares</h4>
-      <h3 className="text-center my-2">Nuestros Servicios</h3>
-      <div className="lg:flex flex-wrap">
-        {
-          services.map((item) => <Services key={item.title} {...item}/>)
-        }
-      </div>
-    </section>
+    <AnimatedReveal>
+      <section id="services" className="sm:container sm:m-auto py-8">
+        <h4 className="text-center">Más Populares</h4>
+        <h3 className="text-center text-5xl font-extrabold text-red-400 mb-5">Nuestros Servicios</h3>
+        <motion.div variants={animationContainer} viewport={{ once: true }} initial="hidden" whileInView="show" className="lg:flex flex-wrap">
+          {
+            services.map((item) => <Services key={item.title} {...item} />)
+          }
+        </motion.div>
+      </section>
+    </AnimatedReveal>
   )
 }

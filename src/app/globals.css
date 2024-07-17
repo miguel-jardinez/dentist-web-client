@@ -5,6 +5,9 @@
 html, body {
   height: 100%;
 }
+::selection {
+  @apply bg-red-400 text-white
+}
 
 @layer base {
   :root  {

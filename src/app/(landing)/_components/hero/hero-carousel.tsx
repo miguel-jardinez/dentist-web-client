@@ -4,11 +4,11 @@ import { HeroOne } from './hero-one'
 import { HeroTwo } from './hero-two'
 import { HeroThree } from './hero-three'
 
-const heroList = [HeroOne, HeroTwo, HeroThree]
+const heroList = [HeroTwo, HeroOne, HeroThree]
 
 export const HeroCarousel = () => {
   return (
-    <Carousel opts={{ loop: true, duration: 2000 }} className='w-full lg:mb-0 mb-10'>
+    <Carousel opts={{ loop: true, duration: 3 }} className='w-full lg:mb-0 mb-0 md:mb-10'>
       <CarouselContent>
         {
           heroList.map((Item, index) => {

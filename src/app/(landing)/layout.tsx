@@ -4,11 +4,11 @@ import React from 'react'
 
 const LandingLayout = ({ children } : { children: React.ReactNode }) => {
   return (
-    <>
+    <div className='bg-gradient-to-r from-background to-white'>
       <NavBar /> 
         { children }
       <Footer />
-    </>
+    </div>
   )
 }
 
