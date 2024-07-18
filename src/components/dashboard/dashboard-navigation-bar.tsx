@@ -18,8 +18,12 @@ export const DashboardNavigationBar = () => {
     await logOutServerAction()
   }
 
+  if (pathName.endsWith('/blog/escribir-blog')) return
+
   return (
-    <nav className='h-full bg-blue-300 pt-5 flex flex-col justify-between py-5'>
+    <nav 
+      className='h-full bg-blue-300 pt-5 flex flex-col justify-between py-5'
+    >
       <div className='space-y-10'>
         <div>
           <Link className={`${baseLinkStyle} ${ isActive('/dashboard') ? isActivePath : ''}`} href="/dashboard">

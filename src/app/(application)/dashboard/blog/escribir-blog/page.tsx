@@ -1,9 +1,7 @@
-import React from 'react'
+import { EscribirBlog } from "@dentist/views/escribir-blog"
 
 const EscriborBlog = () => {
-  return (
-    <div>EscriborBlog</div>
-  )
+  return <EscribirBlog />
 }
 
 export default EscriborBlog
