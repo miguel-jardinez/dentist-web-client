@@ -4,9 +4,9 @@ import React from 'react'
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className='h-full'>
-      <section className='grid grid-cols-[15%_85%] h-full bg-background'>
+      <section className='grid grid-cols-[20%_80%] h-full bg-background'>
         <DashboardNavigationBar />
-        <section>
+        <section className='p-8'>
           {children}
         </section>
       </section>

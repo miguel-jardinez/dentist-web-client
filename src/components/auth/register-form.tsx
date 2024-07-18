@@ -4,8 +4,9 @@ import { RegisterSchema, RegisterSchemaType } from '@dentist/utils/schema/auth/a
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from '../ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
+import { registerServerAction } from '@dentist/views/auth/actions'
 
 
 export const RegisterForm = () => {
@@ -19,7 +20,7 @@ export const RegisterForm = () => {
   })
 
   const onSubmit = async (values: RegisterSchemaType) => {
-    // await registerServerAction(values)
+    await registerServerAction(values)
   }
 
   return (

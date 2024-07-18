@@ -1,16 +1,19 @@
 'use client'
 
-import { useForm } from "react-hook-form"
 import { LoginSchema, LoginSchemaType } from '@dentist/utils/schema/auth/auth-schema'
+import { loginServerAction } from '@dentist/views/auth/actions'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
-import { Input } from '../ui/input'
+import { useRouter, useSearchParams } from "next/navigation"
+import { useForm } from "react-hook-form"
 import { Button } from '../ui/button'
-import { useRouter } from "next/navigation"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Input } from '../ui/input'
 
 
 export const LoginForm = () => {
   const router = useRouter()
+  const path = useSearchParams()
+
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -20,8 +23,7 @@ export const LoginForm = () => {
   })
 
   const onSubmit = async (values: LoginSchemaType) => {
-    // await loginServerAction(values)
-    // router.replace('/dashboard')
+    await loginServerAction(values)
   }
 
   return (
@@ -36,9 +38,6 @@ export const LoginForm = () => {
               <FormControl>
                 <Input placeholder="Correo electrónico" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -53,9 +52,6 @@ export const LoginForm = () => {
               <FormControl>
                 <Input type="password" placeholder="Contraseña" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { MdTextFields, MdHome } from 'react-icons/md'
 import { Button } from '../ui/button'
+import { logOutServerAction } from '@dentist/views/auth/actions'
 
 export const DashboardNavigationBar = () => {
   const router = useRouter();
@@ -14,8 +15,7 @@ export const DashboardNavigationBar = () => {
   const isActive = (path: string) => pathName === path
 
   const onLogout = async () => {
-    // await logOutServerAction()
-    // router.replace('/')
+    await logOutServerAction()
   }
 
   return (
@@ -33,6 +33,10 @@ export const DashboardNavigationBar = () => {
           <Link className={`${baseLinkStyle} ${ isActive('/dashboard/content') ? isActivePath : ''}`} href="/dashboard/content">
             <MdTextFields className='mr-4' size={24} />
             <p className='mt-0'>Contenido</p>
+          </Link>
+          <Link className={`${baseLinkStyle} ${ isActive('/dashboard/content') ? isActivePath : ''}`} href="/dashboard/blog">
+            <MdTextFields className='mr-4' size={24} />
+            <p className='mt-0'>Blog</p>
           </Link>
         </div>
       </div>
