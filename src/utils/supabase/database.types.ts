@@ -131,6 +131,47 @@ export type Database = {
           },
         ]
       }
+      blog: {
+        Row: {
+          author_id: string | null
+          content: string | null
+          created_at: string
+          description: string | null
+          id: string
+          published: boolean | null
+          slug: string | null
+          title: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          published?: boolean | null
+          slug?: string | null
+          title?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          published?: boolean | null
+          slug?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_post_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profile"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       carousel: {
         Row: {
           call_to_action: string | null
@@ -166,6 +207,24 @@ export type Database = {
           },
         ]
       }
+      category: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
       comments: {
         Row: {
           content: string | null
@@ -193,7 +252,7 @@ export type Database = {
             foreignKeyName: "public_comments_post_id_fkey"
             columns: ["post_id"]
             isOneToOne: false
-            referencedRelation: "post"
+            referencedRelation: "blog"
             referencedColumns: ["id"]
           },
           {
@@ -519,58 +578,41 @@ export type Database = {
           },
         ]
       }
-      post: {
-        Row: {
-          author_id: string | null
-          content: string | null
-          created_at: string
-          id: string
-          published: boolean | null
-          title: string | null
-        }
-        Insert: {
-          author_id?: string | null
-          content?: string | null
-          created_at?: string
-          id?: string
-          published?: boolean | null
-          title?: string | null
-        }
-        Update: {
-          author_id?: string | null
-          content?: string | null
-          created_at?: string
-          id?: string
-          published?: boolean | null
-          title?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_post_author_id_fkey"
-            columns: ["author_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       profile: {
         Row: {
           created_at: string
           email: string | null
           id: string
-          role: Database["public"]["Enums"]["role_enum"] | null
         }
         Insert: {
           created_at?: string
           email?: string | null
           id?: string
-          role?: Database["public"]["Enums"]["role_enum"] | null
         }
         Update: {
           created_at?: string
           email?: string | null
           id?: string
+        }
+        Relationships: []
+      }
+      role_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          permission: Database["public"]["Enums"]["role_permission"] | null
+          role: Database["public"]["Enums"]["role_enum"] | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["role_permission"] | null
+          role?: Database["public"]["Enums"]["role_enum"] | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["role_permission"] | null
           role?: Database["public"]["Enums"]["role_enum"] | null
         }
         Relationships: []
@@ -685,16 +727,86 @@ export type Database = {
           },
         ]
       }
+      tags: {
+        Row: {
+          created_at: string
+          id: string
+          tag: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tag?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tag?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          profile_id: string | null
+          role: Database["public"]["Enums"]["role_enum"] | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          profile_id?: string | null
+          role?: Database["public"]["Enums"]["role_enum"] | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          profile_id?: string | null
+          role?: Database["public"]["Enums"]["role_enum"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_user_role_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: true
+            referencedRelation: "profile"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      authorize: {
+        Args: {
+          requested_permission: Database["public"]["Enums"]["role_permission"]
+        }
+        Returns: boolean
+      }
+      custom_access_token_hook: {
+        Args: {
+          event: Json
+        }
+        Returns: Json
+      }
     }
     Enums: {
       appointment_state_enum: "SCHEDULED" | "CANCELED" | "REFOUND" | "FINISHED"
       role_enum: "DENTIST" | "CUSTOMER" | "ADMINISTRATOR" | "PUBLISHER"
+      role_permission:
+        | "post.create"
+        | "post.delete"
+        | "post.update"
+        | "category.read"
+        | "category.create"
+        | "category.update"
+        | "category.delete"
+        | "tag.read"
+        | "tag.update"
+        | "tag.create"
+        | "tag.delete"
       tooth_type_enum: "INCISORS" | "CANINES" | "PREMOLARS" | "MOLARS"
     }
     CompositeTypes: {

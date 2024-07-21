@@ -9,7 +9,7 @@ import { logOutServerAction } from '@dentist/views/auth/actions'
 export const DashboardNavigationBar = () => {
   const router = useRouter();
   const pathName = usePathname()
-  const baseLinkStyle = "w-full px-4 py-3 flex items-center";
+  const baseLinkStyle = "w-full px-4 flex items-center";
   const isActivePath = "bg-white/30 rounded-md"
 
   const isActive = (path: string) => pathName === path
@@ -22,7 +22,7 @@ export const DashboardNavigationBar = () => {
 
   return (
     <nav 
-      className='h-full bg-blue-300 pt-5 flex flex-col justify-between py-5'
+      className='h-full w-3/12 bg-blue-300 pt-5 flex flex-col justify-between py-5'
     >
       <div className='space-y-10'>
         <div>
@@ -32,8 +32,8 @@ export const DashboardNavigationBar = () => {
           </Link>
 
         </div>
-        <div className='space-y-2'>
-          <h2 className='px-4 block text-xl'>CMS</h2>
+        <div className='space-y'>
+          <h2 className='px-4 block text-lg'>Contenido</h2>
           <Link className={`${baseLinkStyle} ${ isActive('/dashboard/content') ? isActivePath : ''}`} href="/dashboard/content">
             <MdTextFields className='mr-4' size={24} />
             <p className='mt-0'>Contenido</p>

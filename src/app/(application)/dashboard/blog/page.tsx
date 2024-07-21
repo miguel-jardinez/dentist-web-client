@@ -1,4 +1,4 @@
-import { BlogPage } from '@dentist/views/blog'
+import { BlogPage } from '@dentist/views/dashboard-blog'
 
 const Page = () => {
   return <BlogPage />

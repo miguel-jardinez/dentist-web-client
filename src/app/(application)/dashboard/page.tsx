@@ -2,10 +2,8 @@ import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div className='bg-background p-5'>
-      <div className='bg-white p-5'>
-        Hola mundo
-      </div>
+    <div className='h-full bg-red-400 w-full'>
+      Dashboard
     </div>
   )
 }

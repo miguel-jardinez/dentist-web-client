@@ -1,11 +1,10 @@
 import { Button } from '@dentist/components/ui/button'
 import Link from 'next/link'
-import React from 'react'
 
-export const BlogHeader = () => {
+export const BlogHeader = async () => {
   return (
     <>
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center justify-between h-[10%]^'>
         BlogHeader
         <Button asChild>
           <Link href="blog/escribir-blog">

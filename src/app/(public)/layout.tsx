@@ -1,12 +1,15 @@
-import { Footer } from '@dentist/app/(landing)/_components/footer'
-import { NavBar } from '@dentist/app/(landing)/_components/nav-bar'
-import React from 'react'
+
+import { Footer } from './_components/footer';
+import { NavBar } from './_components/nav-bar';
+
 
 const LandingLayout = ({ children } : { children: React.ReactNode }) => {
   return (
     <div className='bg-gradient-to-r from-background to-white'>
-      <NavBar /> 
+      <NavBar />
+      <div className='h-full'>
         { children }
+      </div>
       <Footer />
     </div>
   )

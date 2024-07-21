@@ -1,7 +1,7 @@
-import { EscribirBlog } from "@dentist/views/escribir-blog"
+import { WriteBlogPage } from "@dentist/views/dashboard-write-blog"
 
 const EscriborBlog = () => {
-  return <EscribirBlog />
+  return <WriteBlogPage />
 }
 
 export default EscriborBlog
