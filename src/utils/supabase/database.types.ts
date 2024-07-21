@@ -137,6 +137,7 @@ export type Database = {
           content: string | null
           created_at: string
           description: string | null
+          feature_image: string | null
           id: string
           published: boolean | null
           slug: string | null
@@ -147,6 +148,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           description?: string | null
+          feature_image?: string | null
           id?: string
           published?: boolean | null
           slug?: string | null
@@ -157,6 +159,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           description?: string | null
+          feature_image?: string | null
           id?: string
           published?: boolean | null
           slug?: string | null

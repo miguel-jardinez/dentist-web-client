@@ -1,9 +1,11 @@
 'use client'
 
 import { supabaseBrowserClient } from "@dentist/utils/supabase/browser-client"
-import dynamic from "next/dynamic"
+import Image from "next/image"
 import { useParams } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
+import "react-quill/dist/quill.snow.css"
+import '../../components/quill-editor/quill-editor-styles.css'
 
 interface BlogDataState {
   author_id: string | null;
@@ -14,16 +16,12 @@ interface BlogDataState {
   published: boolean | null;
   slug: string | null;
   title: string | null;
+  feature_image: string | null;
 }
 
 export const DashboardBlogContentPage = () => {
   const [blogData, setblogData] = useState<BlogDataState | null>(null)
   const params = useParams<{ slug: string }>()
-
-  const BlogContent = useMemo(
-    () => dynamic(() => import("./components/blog-content"), { ssr: false }),
-    []
-  )
 
   const onHangleDetBlogData = async (slug: string) => {
     try {
@@ -48,13 +46,20 @@ export const DashboardBlogContentPage = () => {
   }, [params])
 
   return (
-    <>
-      <div className="max-w-screen-lg m-auto">
+    <section className="pt-16">
+      <Image
+        alt={blogData?.title ?? ''}
+        src={blogData?.feature_image ?? ''}
+        width={1024}
+        height={500}
+        className="w-full h-[30rem] object-cover mb-10"
+      />
+      <div className="max-w-screen-md m-auto">
         <div className="mb-10">
           <h1>{blogData?.title}</h1>
         </div>
-        <BlogContent content={blogData?.content ?? ''} />
+        <div dangerouslySetInnerHTML={{ __html: blogData?.content ?? '' }} />
       </div>
-    </>
+    </section>
   )
 }

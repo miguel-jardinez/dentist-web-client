@@ -1,8 +1,8 @@
-import { DashboardBlogContentPage } from "@dentist/views/dashboard-blog-content/dashboard-blog-content-page"
+import { DashboardBlogContentPage } from "@dentist/views/public-blog-content/dashboard-blog-content-page"
 
 const Page = () => {
   return (
-    <div className="pt-28 container m-auto">
+    <div>
       <DashboardBlogContentPage />
     </div>
   )

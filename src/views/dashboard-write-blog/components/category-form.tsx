@@ -8,6 +8,7 @@ import { Input } from "@dentist/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CreateCategorySchema, CreateCategorySchemaType } from "@dentist/utils/schema/blog/blog-schema"
 import { Button } from "@dentist/components/ui/button"
+import { LayoutMetadataSection } from "./layout-metadata-section"
 
 interface CategoryFormProps {
   items: Array<{ category: string | null, id: string, created_at: string }>
@@ -29,7 +30,7 @@ export const CategoryForm = ({ items }: CategoryFormProps) => {
 
 
   return (
-    <>
+    <LayoutMetadataSection title="Categorías">
       {
         items.map((item) => <CheckboxCategory label={item.category ?? ''} id={item.id} key={item.id} />)
       }
@@ -63,6 +64,6 @@ export const CategoryForm = ({ items }: CategoryFormProps) => {
       }
 
 
-    </>
+    </LayoutMetadataSection>
   )
 }

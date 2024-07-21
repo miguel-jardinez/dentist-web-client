@@ -25,7 +25,6 @@ export const createBlogServerAction = async (data: CreateBlogServerAction, blogI
     }, {
       onConflict: 'id'
     })
-    console.log(response)
 
     return true
   } catch(e: any) {
