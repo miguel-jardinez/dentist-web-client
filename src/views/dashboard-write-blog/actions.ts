@@ -1,13 +1,13 @@
 'use server'
 
 import { supabaseServerClient } from "@dentist/utils/supabase/server-client"
-import { redirect } from "next/navigation"
 
 interface CreateBlogServerAction {
   blogTitle: string,
   blogContent: string
   blogSlug: string,
   blogDescription: string,
+  blogFeatureImage: string,
 }
 
 export const createBlogServerAction = async (data: CreateBlogServerAction, blogId: string | null) => {
@@ -21,12 +21,49 @@ export const createBlogServerAction = async (data: CreateBlogServerAction, blogI
       author_id: userData.user?.id,
       slug: data.blogSlug,
       description: data.blogDescription,
+      feature_image: data.blogFeatureImage,
       published: true,
     }, {
       onConflict: 'id'
-    })
+    }).select().single()
 
-    return true
+    return response
+  } catch(e: any) {
+    console.log(e.message)
+    throw Error('Error')
+  }
+}
+
+export const createNewCategory = async (category: string) => {
+  try {
+    const response = await supabaseServerClient().from('category').insert({
+      category
+    }).select('id, category').single()
+
+    return response.data
+  } catch(e: any) {
+    console.log(e.message)
+    throw Error('Error')
+  }
+}
+
+export const deleteBlogCategory = async (categoryid: string) => {
+  try {
+    const response = await supabaseServerClient().from('blog_category').delete()
+    .eq('category_id', categoryid).select('id, category(category)').single()
+
+    return response.data
+  } catch(e: any) {
+    console.log(e.message)
+    throw Error('Error')
+  }
+}
+
+export const addCategoryToBlog = async (categoryid: string, blogId: string) => {
+  try {
+    const response = await supabaseServerClient().from('blog_category').insert({ category_id: categoryid, blog_id: blogId }).select('id, category(category)').single()
+
+    return response.data
   } catch(e: any) {
     console.log(e.message)
     throw Error('Error')

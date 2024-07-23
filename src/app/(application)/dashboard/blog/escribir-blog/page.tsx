@@ -1,7 +1,14 @@
 import { WriteBlogPage } from "@dentist/views/dashboard-write-blog"
+import { NextPage } from "next"
 
-const EscriborBlog = () => {
-  return <WriteBlogPage />
+interface EscriborBlogProps {
+  searchParams: {
+    blogId?: string
+  }
+}
+
+const EscriborBlog = ({ searchParams: { blogId } } : EscriborBlogProps) => {
+  return <WriteBlogPage  blogId={blogId}/>
 }
 
 export default EscriborBlog

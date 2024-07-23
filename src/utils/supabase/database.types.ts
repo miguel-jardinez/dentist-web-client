@@ -175,6 +175,42 @@ export type Database = {
           },
         ]
       }
+      blog_category: {
+        Row: {
+          blog_id: string | null
+          category_id: string | null
+          created_at: string
+          id: string
+        }
+        Insert: {
+          blog_id?: string | null
+          category_id?: string | null
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          blog_id?: string | null
+          category_id?: string | null
+          created_at?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_blog_category_blog_id_fkey"
+            columns: ["blog_id"]
+            isOneToOne: false
+            referencedRelation: "blog"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_blog_category_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "category"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       carousel: {
         Row: {
           call_to_action: string | null

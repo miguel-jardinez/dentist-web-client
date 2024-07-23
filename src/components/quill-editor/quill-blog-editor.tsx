@@ -5,7 +5,6 @@ import { useMemo } from 'react';
 
 import "react-quill/dist/quill.snow.css";
 import './quill-editor-styles.css'
-import ImageResize from 'quill-image-resize-module-react';
 import QuillEditor, { Quill } from 'react-quill';
 import { useWriteBlogReducer } from '@dentist/views/dashboard-write-blog/context/reducer/use-write-blog-reducer';
 
@@ -23,14 +22,9 @@ const QuillBlogEditor = ({ value } : QuillBlogEditorProps) => {
     'montserrat',
   ]
 
-  Quill.register('modules/imageResize', ImageResize)
   Quill.register(font, true);
 
   const quillModule = useMemo(() => ({
-    imageResize: {
-      parchment: Quill.import('parchment'),
-      modules: ['Resize', 'DisplaySize']
-    },
     history: {
       delay: 2000,
       maxStack: 500,
@@ -65,8 +59,6 @@ const QuillBlogEditor = ({ value } : QuillBlogEditorProps) => {
       onChangeBlogDescriptionSeo(convert(content))
     }
   }
-
-  console.log(state)
 
   return (
     <>

@@ -1,11 +1,10 @@
-'use client'
-
-import { supabaseBrowserClient } from "@dentist/utils/supabase/browser-client"
 import Image from "next/image"
-import { useParams } from "next/navigation"
-import { useEffect, useState } from "react"
 import "react-quill/dist/quill.snow.css"
 import '../../components/quill-editor/quill-editor-styles.css'
+
+interface DashboardBlogContentPageProps {
+  blogData : BlogDataState | null
+}
 
 interface BlogDataState {
   author_id: string | null;
@@ -19,32 +18,7 @@ interface BlogDataState {
   feature_image: string | null;
 }
 
-export const DashboardBlogContentPage = () => {
-  const [blogData, setblogData] = useState<BlogDataState | null>(null)
-  const params = useParams<{ slug: string }>()
-
-  const onHangleDetBlogData = async (slug: string) => {
-    try {
-      const data = await supabaseBrowserClient()
-        .from('blog')
-        .select()
-        .eq('slug', slug)
-        .single()
-
-        setblogData(data.data)
-    } catch (e: any) {
-      console.log(e.message)
-    }
-  }
-
-  useEffect(() => {
-    const slug = params.slug
-
-    if (slug) {
-      onHangleDetBlogData(slug)
-    }
-  }, [params])
-
+export const DashboardBlogContentPage = ({ blogData } : DashboardBlogContentPageProps) => {
   return (
     <section className="pt-16">
       <Image

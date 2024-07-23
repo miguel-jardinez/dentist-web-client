@@ -18,7 +18,8 @@ export const WriteBlogHeader = () => {
         blogContent: state.blogContent, 
         blogTitle: state.blogTitle,
         blogSlug: state.blogSlug,
-        blogDescription: state.blogDescriptionSeo
+        blogDescription: state.blogDescriptionSeo,
+        blogFeatureImage: state.blogFeatureImage
       }, blogId)
       
       router.push('/dashboard/blog')
