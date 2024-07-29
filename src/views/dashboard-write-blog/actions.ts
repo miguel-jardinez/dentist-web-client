@@ -22,11 +22,12 @@ export const createBlogServerAction = async (data: CreateBlogServerAction, blogI
       slug: data.blogSlug,
       description: data.blogDescription,
       feature_image: data.blogFeatureImage,
-      published: true,
+      is_published: true,
     }, {
       onConflict: 'id'
     }).select().single()
 
+    console.log({response})
     return response
   } catch(e: any) {
     console.log(e.message)
@@ -49,7 +50,7 @@ export const createNewCategory = async (category: string) => {
 
 export const deleteBlogCategory = async (categoryid: string) => {
   try {
-    const response = await supabaseServerClient().from('blog_category').delete()
+    const response = await supabaseServerClient().from('category_blog').delete()
     .eq('category_id', categoryid).select('id, category(category)').single()
 
     return response.data
@@ -61,7 +62,8 @@ export const deleteBlogCategory = async (categoryid: string) => {
 
 export const addCategoryToBlog = async (categoryid: string, blogId: string) => {
   try {
-    const response = await supabaseServerClient().from('blog_category').insert({ category_id: categoryid, blog_id: blogId }).select('id, category(category)').single()
+    const response = await supabaseServerClient().from('category_blog').insert({ category_id: categoryid, blog_id: blogId }).select('id, category(category)').single()
+    console.log(categoryid, blogId, response)
 
     return response.data
   } catch(e: any) {

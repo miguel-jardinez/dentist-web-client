@@ -1,29 +1,16 @@
 'use client'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@dentist/components/ui/card";
+import { Blog } from "@dentist/types/blog-type-supabase";
 import { formatDayMonthYear } from '@dentist/utils/date-formats';
 import { useRouter } from "next/navigation";
 
 interface PublicBlogCardProps {
-  author_id: string | null;
-  content: string | null;
-  description: string | null;
-  created_at: string;
-  id: string;
-  published: boolean | null;
-  slug: string | null;
-  title: string | null;
+  blogData: Blog
 }
 
-export const PublicBlogCard = ({ 
-  author_id,
-  content,
-  created_at,
-  id,
-  published,
-  description,
-  slug,
-  title,
+export const PublicBlogCard = ({
+  blogData
 } : PublicBlogCardProps) => {
   const router = useRouter()
 
@@ -32,15 +19,15 @@ export const PublicBlogCard = ({
   }
 
   return (
-    <Card className="cursor-pointer" onClick={() => handleNavigate(slug ?? '')}>
+    <Card className="cursor-pointer" onClick={() => handleNavigate(blogData.slug)}>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>{blogData.title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>{description}</p>
+        <p>{blogData.description}</p>
       </CardContent>
       <CardFooter>
-        {formatDayMonthYear(created_at)}
+        {formatDayMonthYear(blogData.createdAt)}
       </CardFooter>
     </Card>
   )

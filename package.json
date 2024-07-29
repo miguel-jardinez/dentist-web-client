@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "supabase-types": "supabase gen types typescript --project-id cdwelwkpoxddbafdvbrt > ./src/utils/supabase/database.types.ts"
+    "supabase-types": "supabase gen types typescript --project-id tfqtzdjzsurmzrjdwgzh > ./src/utils/supabase/database.types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -23,6 +23,7 @@
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.2",
     "@tanstack/react-table": "^8.19.2",
+    "base64-arraybuffer": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",

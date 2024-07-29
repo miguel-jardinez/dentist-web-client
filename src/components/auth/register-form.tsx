@@ -7,6 +7,8 @@ import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { registerServerAction } from '@dentist/views/auth/actions'
+import { jwtDecode } from 'jwt-decode'
+import { RequestStateEnum } from '@dentist/utils/response-state'
 
 
 export const RegisterForm = () => {
@@ -20,7 +22,27 @@ export const RegisterForm = () => {
   })
 
   const onSubmit = async (values: RegisterSchemaType) => {
-    await registerServerAction(values)
+    try {
+      const data = await registerServerAction(values)
+
+      switch(data.type) {
+        case RequestStateEnum.SUCCESS: {
+          const user = jwtDecode(data.data?.access_token ?? '')
+
+          console.log(user);
+
+        }
+        case RequestStateEnum.ERROR: {
+
+        }
+        case RequestStateEnum.LOADING: {
+
+        }
+      }
+
+    } catch(e: any) {
+      console.log(e.message)
+    }
   }
 
   return (

@@ -1,32 +1,35 @@
-
 'use client'
+
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import { MdTextFields, MdHome } from 'react-icons/md'
-import { Button } from '../ui/button'
-import { logOutServerAction } from '@dentist/views/auth/actions'
+import { usePathname } from 'next/navigation'
+import { MdHome, MdTextFields } from 'react-icons/md'
+import { IoImages } from "react-icons/io5";
+import { IconType } from 'react-icons';
+import { HiPencilAlt } from "react-icons/hi";
+
+
+const ItemNavigationBar = ({ Icon, href, label }: { Icon: IconType, label: string, href: string  }): React.ReactNode => {
+  return (
+    <Link href={href} className='flex items-center px-4 h-8'>
+      <Icon className='mr-2' size={16} />
+      <p className='mt-0'>{label}</p>
+    </Link>
+  )
+}
+
 
 export const DashboardNavigationBar = () => {
-  const router = useRouter();
-  const pathName = usePathname()
-  const baseLinkStyle = "w-full px-4 flex items-center";
-  const isActivePath = "bg-white/30 rounded-md"
+    const pathName = usePathname()
+    if (pathName.endsWith('/blog/escribir-blog')) return
 
-  const isActive = (path: string) => pathName === path
 
-  const onLogout = async () => {
-    await logOutServerAction()
-  }
-
-  if (pathName.endsWith('/blog/escribir-blog')) return
-
-  return (
+    return (
     <nav 
       className='h-full w-3/12 bg-blue-300 pt-5 flex flex-col justify-between py-5'
     >
       <div className='space-y-10'>
         <div>
-          <Link className={`${baseLinkStyle} ${ isActive('/dashboard') ? isActivePath : ''}`} href="/dashboard">
+          <Link href="/dashboard">
             <MdHome className='mr-4' size={24} />
             <p className='mt-0'>Inicio</p>
           </Link>
@@ -34,18 +37,22 @@ export const DashboardNavigationBar = () => {
         </div>
         <div className='space-y'>
           <h2 className='px-4 block text-lg'>Contenido</h2>
-          <Link className={`${baseLinkStyle} ${ isActive('/dashboard/content') ? isActivePath : ''}`} href="/dashboard/content">
-            <MdTextFields className='mr-4' size={24} />
-            <p className='mt-0'>Contenido</p>
-          </Link>
-          <Link className={`${baseLinkStyle} ${ isActive('/dashboard/content') ? isActivePath : ''}`} href="/dashboard/blog">
-            <MdTextFields className='mr-4' size={24} />
-            <p className='mt-0'>Blog</p>
-          </Link>
+          <ItemNavigationBar 
+            Icon={MdTextFields}
+            label='Contenido'
+            href='/dashboard/content'
+          />
+          <ItemNavigationBar 
+            Icon={HiPencilAlt}
+            label='Blog'
+            href='/dashboard/blog'
+          />
+          <ItemNavigationBar 
+            Icon={IoImages}
+            label='Medios'
+            href='/dashboard/medios'
+          />
         </div>
-      </div>
-      <div className='px-4'>
-        <Button onClick={onLogout} className='w-full'>Log Out</Button>
       </div>
     </nav>
   )

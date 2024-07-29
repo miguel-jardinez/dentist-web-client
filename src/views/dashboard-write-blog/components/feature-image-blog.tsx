@@ -10,19 +10,20 @@ interface FeatureImageBlogProps {
 export const FeatureImageBlog = async ({ image } : FeatureImageBlogProps) => {
   const storageData = await supabaseServerClient()
     .storage
-    .from('blog-bucket')
-    .list('features', {
+    .from('blog')
+    .list('feature', {
       limit: 20,
       offset: 0,
       sortBy: { column: 'created_at', order: 'asc' }
     })
 
+
   const response = storageData.data?.map((image) => {
-    const publicUrl = supabaseServerClient().storage.from('blog-bucket').getPublicUrl(`features/${image.name}`)
+    const publicUrl = supabaseServerClient().storage.from('blog').getPublicUrl(`feature/${image.name}`)
 
     return {
       ...image,
-      url: publicUrl.data.publicUrl,
+      url: publicUrl.data.publicUrl
     }
   })
 

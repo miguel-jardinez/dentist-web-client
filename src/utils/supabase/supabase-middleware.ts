@@ -1,16 +1,18 @@
 import { createServerClient } from '@supabase/ssr'
+import { JwtPayload } from 'jwt-decode'
 import { NextResponse, type NextRequest } from 'next/server'
+import { Database } from './database.types'
 import { isAdminRoutes, isAuthRouted, isPublicRoutes } from './map-routes'
-import { jwtDecode, JwtPayload } from 'jwt-decode'
 
-type UserRole = JwtPayload & { user_role: string }
+export type UserRole = JwtPayload & { user_role: string }
 
 export const updateSession = async(request: NextRequest) => {
+
   let supabaseResponse = NextResponse.next({
     request,
   })
 
-  const supabase = createServerClient(
+  const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -36,22 +38,34 @@ export const updateSession = async(request: NextRequest) => {
   // issues with users being randomly logged out.
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (session?.access_token) {
-    const user: UserRole = jwtDecode(session?.access_token ?? '')
-    const pathRedirect = user.user_role === 'CUSTOMER' ? '/blog' : '/dashboard'; 
+  if (user) {
+    const userRole = await supabase.from('user_role').select('*').eq('user_id', user.id).single()
     
-    if (session && isAuthRouted(request.nextUrl.pathname)) {
+    const permission = await supabase.from('role_permission').select('*, permission(*)').eq('role_id', userRole.data?.role_id ?? '')
+    
+    const canNavigateDashboard = permission.data?.some((permission) => permission.permission?.permission_name === 'dashboard.navigate')
+    
+    const pathRedirect = canNavigateDashboard ? '/dashboard' : '/blog';
+
+    if (isAdminRoutes(request.nextUrl.pathname) && !canNavigateDashboard) {
       const url = request.nextUrl.clone()
-      url.pathname = `${pathRedirect}`
+      url.pathname = pathRedirect
+      console.log(isAdminRoutes(request.nextUrl.pathname), request.nextUrl.pathname, pathRedirect)
+      return NextResponse.redirect(url)
+    }
+    
+    if (user && isAuthRouted(request.nextUrl.pathname)) {
+      const url = request.nextUrl.clone()
+      url.pathname = pathRedirect
       return NextResponse.redirect(url)
     }
   }
 
   if (
-    !session &&
+    !user &&
     !isPublicRoutes(request.nextUrl.pathname)
   ) {
     const url = request.nextUrl.clone()

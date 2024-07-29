@@ -3,26 +3,26 @@
 import { convert } from 'html-to-text'
 import { useMemo } from 'react';
 
-import "react-quill/dist/quill.snow.css";
 import './quill-editor-styles.css'
 import QuillEditor, { Quill } from 'react-quill';
 import { useWriteBlogReducer } from '@dentist/views/dashboard-write-blog/context/reducer/use-write-blog-reducer';
+import { QuillToolBar } from './quill-tool-bar';
 
 interface QuillBlogEditorProps {
   value: string
 }
 
+const FontAttributor = Quill.import('attributors/class/font');
+FontAttributor.whitelist = [
+  'lora',
+  'roboto',
+  'montserrat',
+];
+Quill.register(FontAttributor, true);
+
+
 const QuillBlogEditor = ({ value } : QuillBlogEditorProps) => {
   const { onChangeBlogContent, onChangeBlogDescriptionSeo, state } = useWriteBlogReducer()
-
-  const font = Quill.import('attributors/class/font');
-  font.whitelist = [
-    'lora',
-    'roboto',
-    'montserrat',
-  ]
-
-  Quill.register(font, true);
 
   const quillModule = useMemo(() => ({
     history: {
@@ -61,15 +61,16 @@ const QuillBlogEditor = ({ value } : QuillBlogEditorProps) => {
   }
 
   return (
-    <>
+    <div className='relative'>
+      <QuillToolBar toolBarId='t1' />
       <QuillEditor
         value={state.blogContent ?? ''}
         theme='snow'
-        modules={quillModule}
+        modules={{ toolbar: { container: '#t1' } }}
         onChange={(e) => onUpdateBlogContent(e)}
         placeholder='Escribe aquí tu nuevo blog'
       />
-    </>
+    </div>
   )
 }
 

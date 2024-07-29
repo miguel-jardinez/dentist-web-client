@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form"
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
+import { RequestStateEnum } from '@dentist/utils/response-state'
+import { jwtDecode } from 'jwt-decode'
+import { UserRole } from '@dentist/utils/supabase/supabase-middleware'
 
 
 export const LoginForm = () => {
@@ -23,7 +26,29 @@ export const LoginForm = () => {
   })
 
   const onSubmit = async (values: LoginSchemaType) => {
-    await loginServerAction(values)
+    try {
+      const response = await loginServerAction(values)
+
+      switch(response.type) {
+        case RequestStateEnum.SUCCESS: {
+          const user : UserRole = jwtDecode(response.data.access_token ?? '')
+          
+          if (user.user_role === "ADMINISTRATOR") {
+            router.push('/dashboard')
+          } else {
+            router.push('/blog')
+          }
+        }
+        case RequestStateEnum.ERROR: {
+
+        }
+        case RequestStateEnum.LOADING: {
+
+        }
+      }
+    } catch(e: any) {
+
+    }
   }
 
   return (

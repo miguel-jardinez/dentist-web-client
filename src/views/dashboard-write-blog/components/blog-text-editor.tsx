@@ -47,9 +47,9 @@ export const BlogTextEditor = ({ blogData }: BlogTextEditorProps) => {
 
   return (
     <div className="py-10 w-full max-h-full overflow-y-scroll">
-      <div className="max-w-full px-10">
+      <div className="max-w-full h-full px-10">
         <Input
-          className="border-0 mb-5 bg-transparent h-full text-5xl outline-none font-light focus-visible:ring-0 focus-visible:outline-none"
+          className="border-0 mb-5 bg-transparent h-[10%] text-5xl outline-none font-light focus-visible:ring-0 focus-visible:outline-none"
           placeholder="Titulo del blog"
           onChange={(e) => onChangeBlogTitle(e.target.value)}
           value={state.blogTitle}

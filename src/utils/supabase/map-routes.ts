@@ -6,7 +6,8 @@ const publicRoutes = [
 
 const adminRoutes = [
   '/admin',
-  '/dashboards'
+  '/dashboard',
+  '/dashboard/blog'
 ]
 
 const authRoutes = [
@@ -15,11 +16,11 @@ const authRoutes = [
 ]
 
 export const isAuthRouted = (path: string) => {
-  return authRoutes.some((publicRoute) => publicRoute === path)
+  return authRoutes.some((publicRoute) => publicRoute.startsWith(path))
 }
 
 export const isAdminRoutes = (path: string) => {
-  return adminRoutes.some((publicRoute) => publicRoute === path)
+  return adminRoutes.some(adminRoute => path.startsWith(adminRoute));
 }
 
 export const isPublicRoutes = (path: string) => {

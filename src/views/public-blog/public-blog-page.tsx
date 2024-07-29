@@ -1,5 +1,6 @@
 import { supabaseServerClient } from "@dentist/utils/supabase/server-client"
 import { PublicBlogCard } from "./components/public-blog-card"
+import { blogMapper } from "@dentist/types/blog-type-supabase"
 
 export const PublicBlogPage = async () => {
   const { data } = await supabaseServerClient()
@@ -16,7 +17,7 @@ export const PublicBlogPage = async () => {
 
         <div className="grid grid-cols-3 gap-4">
           {
-            data?.map((blog) => <PublicBlogCard {...blog} key={blog.id} />
+            data?.map((blog) => <PublicBlogCard blogData={blogMapper(blog)} key={blog.id} />
             )
           }
         </div>

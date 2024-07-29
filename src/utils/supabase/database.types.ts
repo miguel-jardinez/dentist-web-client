@@ -9,128 +9,6 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      address: {
-        Row: {
-          city: string | null
-          created_at: string
-          exterior_number: number | null
-          full_address: string | null
-          id: string
-          interior_number: number | null
-          neighborhood: string | null
-          phone_number: string | null
-          postal_code: string | null
-          profile_id: string | null
-          street_line_1: string | null
-          street_line_2: string | null
-        }
-        Insert: {
-          city?: string | null
-          created_at?: string
-          exterior_number?: number | null
-          full_address?: string | null
-          id?: string
-          interior_number?: number | null
-          neighborhood?: string | null
-          phone_number?: string | null
-          postal_code?: string | null
-          profile_id?: string | null
-          street_line_1?: string | null
-          street_line_2?: string | null
-        }
-        Update: {
-          city?: string | null
-          created_at?: string
-          exterior_number?: number | null
-          full_address?: string | null
-          id?: string
-          interior_number?: number | null
-          neighborhood?: string | null
-          phone_number?: string | null
-          postal_code?: string | null
-          profile_id?: string | null
-          street_line_1?: string | null
-          street_line_2?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_address_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      adult_teeth: {
-        Row: {
-          code_teeth: string | null
-          created_at: string
-          id: string
-          name_teeth: string | null
-          type_teeth: Database["public"]["Enums"]["tooth_type_enum"] | null
-        }
-        Insert: {
-          code_teeth?: string | null
-          created_at?: string
-          id?: string
-          name_teeth?: string | null
-          type_teeth?: Database["public"]["Enums"]["tooth_type_enum"] | null
-        }
-        Update: {
-          code_teeth?: string | null
-          created_at?: string
-          id?: string
-          name_teeth?: string | null
-          type_teeth?: Database["public"]["Enums"]["tooth_type_enum"] | null
-        }
-        Relationships: []
-      }
-      appointment: {
-        Row: {
-          appoinment_state:
-            | Database["public"]["Enums"]["appointment_state_enum"]
-            | null
-          created_at: string
-          id: string
-          payment_id: string | null
-          profile_id: string | null
-        }
-        Insert: {
-          appoinment_state?:
-            | Database["public"]["Enums"]["appointment_state_enum"]
-            | null
-          created_at?: string
-          id?: string
-          payment_id?: string | null
-          profile_id?: string | null
-        }
-        Update: {
-          appoinment_state?:
-            | Database["public"]["Enums"]["appointment_state_enum"]
-            | null
-          created_at?: string
-          id?: string
-          payment_id?: string | null
-          profile_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_appointment_payment_id_fkey"
-            columns: ["payment_id"]
-            isOneToOne: false
-            referencedRelation: "payment"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_appointment_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       blog: {
         Row: {
           author_id: string | null
@@ -139,7 +17,8 @@ export type Database = {
           description: string | null
           feature_image: string | null
           id: string
-          published: boolean | null
+          is_premium: boolean | null
+          is_published: boolean | null
           slug: string | null
           title: string | null
         }
@@ -150,7 +29,8 @@ export type Database = {
           description?: string | null
           feature_image?: string | null
           id?: string
-          published?: boolean | null
+          is_premium?: boolean | null
+          is_published?: boolean | null
           slug?: string | null
           title?: string | null
         }
@@ -161,87 +41,17 @@ export type Database = {
           description?: string | null
           feature_image?: string | null
           id?: string
-          published?: boolean | null
+          is_premium?: boolean | null
+          is_published?: boolean | null
           slug?: string | null
           title?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "public_post_author_id_fkey"
+            foreignKeyName: "blog_author_id_fkey"
             columns: ["author_id"]
             isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      blog_category: {
-        Row: {
-          blog_id: string | null
-          category_id: string | null
-          created_at: string
-          id: string
-        }
-        Insert: {
-          blog_id?: string | null
-          category_id?: string | null
-          created_at?: string
-          id?: string
-        }
-        Update: {
-          blog_id?: string | null
-          category_id?: string | null
-          created_at?: string
-          id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_blog_category_blog_id_fkey"
-            columns: ["blog_id"]
-            isOneToOne: false
-            referencedRelation: "blog"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_blog_category_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "category"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      carousel: {
-        Row: {
-          call_to_action: string | null
-          created_at: string
-          id: string
-          page_id: string | null
-          subtitle: string | null
-          title: string | null
-        }
-        Insert: {
-          call_to_action?: string | null
-          created_at?: string
-          id?: string
-          page_id?: string | null
-          subtitle?: string | null
-          title?: string | null
-        }
-        Update: {
-          call_to_action?: string | null
-          created_at?: string
-          id?: string
-          page_id?: string | null
-          subtitle?: string | null
-          title?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_carousel_page_id_fkey"
-            columns: ["page_id"]
-            isOneToOne: false
-            referencedRelation: "page"
+            referencedRelation: "user"
             referencedColumns: ["id"]
           },
         ]
@@ -264,193 +74,38 @@ export type Database = {
         }
         Relationships: []
       }
-      comments: {
+      category_blog: {
         Row: {
-          content: string | null
+          blog_id: string | null
+          category_id: string | null
           created_at: string
           id: string
-          post_id: string | null
-          user_id: string | null
         }
         Insert: {
-          content?: string | null
+          blog_id?: string | null
+          category_id?: string | null
           created_at?: string
           id?: string
-          post_id?: string | null
-          user_id?: string | null
         }
         Update: {
-          content?: string | null
+          blog_id?: string | null
+          category_id?: string | null
           created_at?: string
           id?: string
-          post_id?: string | null
-          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "public_comments_post_id_fkey"
-            columns: ["post_id"]
+            foreignKeyName: "category_blog_blog_id_fkey"
+            columns: ["blog_id"]
             isOneToOne: false
             referencedRelation: "blog"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "public_comments_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "category_blog_category_id_fkey"
+            columns: ["category_id"]
             isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      customer: {
-        Row: {
-          created_at: string
-          id: string
-          last_name: string | null
-          name: string | null
-          phone_number: string | null
-          profile_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          profile_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          profile_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_customer_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      dentist: {
-        Row: {
-          created_at: string
-          id: string
-          last_name: string | null
-          name: string | null
-          phone_number: string | null
-          profile_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          profile_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          profile_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_dentist_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: false
-            referencedRelation: "profile"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      emercency_contact: {
-        Row: {
-          created_at: string
-          customer_id: string | null
-          display_name: string | null
-          email: string | null
-          id: string
-          last_name: string | null
-          name: string | null
-          phone_number: string | null
-          relationship: string | null
-        }
-        Insert: {
-          created_at?: string
-          customer_id?: string | null
-          display_name?: string | null
-          email?: string | null
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          relationship?: string | null
-        }
-        Update: {
-          created_at?: string
-          customer_id?: string | null
-          display_name?: string | null
-          email?: string | null
-          id?: string
-          last_name?: string | null
-          name?: string | null
-          phone_number?: string | null
-          relationship?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_emercency_contact_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      familiar_clinic_history: {
-        Row: {
-          created_at: string
-          customer_id: string | null
-          id: string
-          relative_has_cancer: boolean | null
-          relative_has_diabetes: boolean | null
-          relative_with_cancer_relation: string | null
-          relative_with_diabetes: string | null
-        }
-        Insert: {
-          created_at?: string
-          customer_id?: string | null
-          id?: string
-          relative_has_cancer?: boolean | null
-          relative_has_diabetes?: boolean | null
-          relative_with_cancer_relation?: string | null
-          relative_with_diabetes?: string | null
-        }
-        Update: {
-          created_at?: string
-          customer_id?: string | null
-          id?: string
-          relative_has_cancer?: boolean | null
-          relative_has_diabetes?: boolean | null
-          relative_with_cancer_relation?: string | null
-          relative_with_diabetes?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_familiar_clinic_history_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer"
+            referencedRelation: "category"
             referencedColumns: ["id"]
           },
         ]
@@ -476,148 +131,82 @@ export type Database = {
         }
         Relationships: []
       }
-      label: {
+      permission: {
         Row: {
           created_at: string
           id: string
-          label: string | null
-          label_id: string | null
-          page_id: string | null
+          permission_category: string | null
+          permission_name: string | null
         }
         Insert: {
           created_at?: string
           id?: string
-          label?: string | null
-          label_id?: string | null
-          page_id?: string | null
+          permission_category?: string | null
+          permission_name?: string | null
         }
         Update: {
           created_at?: string
           id?: string
-          label?: string | null
-          label_id?: string | null
-          page_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_label_page_id_fkey"
-            columns: ["page_id"]
-            isOneToOne: false
-            referencedRelation: "page"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      page: {
-        Row: {
-          created_at: string
-          id: string
-          page_id: string | null
-          page_name: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          page_id?: string | null
-          page_name?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          page_id?: string | null
-          page_name?: string | null
+          permission_category?: string | null
+          permission_name?: string | null
         }
         Relationships: []
       }
-      payment: {
+      role_permission: {
         Row: {
-          amount: number | null
-          billing_address: string | null
           created_at: string
-          currency: string | null
-          customer_id: string | null
-          first_six: string | null
           id: string
-          last_four: string | null
-          paymenth_method: string | null
+          permission_id: string | null
+          role_id: string | null
         }
         Insert: {
-          amount?: number | null
-          billing_address?: string | null
           created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          first_six?: string | null
           id?: string
-          last_four?: string | null
-          paymenth_method?: string | null
+          permission_id?: string | null
+          role_id?: string | null
         }
         Update: {
-          amount?: number | null
-          billing_address?: string | null
           created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          first_six?: string | null
           id?: string
-          last_four?: string | null
-          paymenth_method?: string | null
+          permission_id?: string | null
+          role_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "public_payment_customer_id_fkey"
-            columns: ["customer_id"]
+            foreignKeyName: "permission_role_permission_id_fkey"
+            columns: ["permission_id"]
             isOneToOne: false
-            referencedRelation: "customer"
+            referencedRelation: "permission"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "permission_role_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
             referencedColumns: ["id"]
           },
         ]
       }
-      personal_clinic_history: {
+      roles: {
         Row: {
-          cancer_type: string | null
           created_at: string
-          customer_id: string | null
-          diabetes_type: string | null
-          has_cancer: boolean | null
-          has_diabetes: boolean | null
-          hearth_diseases: boolean | null
           id: string
-          kidney_diseases: boolean | null
+          role_name: string | null
         }
         Insert: {
-          cancer_type?: string | null
           created_at?: string
-          customer_id?: string | null
-          diabetes_type?: string | null
-          has_cancer?: boolean | null
-          has_diabetes?: boolean | null
-          hearth_diseases?: boolean | null
           id?: string
-          kidney_diseases?: boolean | null
+          role_name?: string | null
         }
         Update: {
-          cancer_type?: string | null
           created_at?: string
-          customer_id?: string | null
-          diabetes_type?: string | null
-          has_cancer?: boolean | null
-          has_diabetes?: boolean | null
-          hearth_diseases?: boolean | null
           id?: string
-          kidney_diseases?: boolean | null
+          role_name?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "public_personal_clinic_history_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      profile: {
+      user: {
         Row: {
           created_at: string
           email: string | null
@@ -635,180 +224,38 @@ export type Database = {
         }
         Relationships: []
       }
-      role_permissions: {
+      user_role: {
         Row: {
           created_at: string
           id: string
-          permission: Database["public"]["Enums"]["role_permission"] | null
-          role: Database["public"]["Enums"]["role_enum"] | null
+          role_id: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
-          permission?: Database["public"]["Enums"]["role_permission"] | null
-          role?: Database["public"]["Enums"]["role_enum"] | null
+          role_id?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
-          permission?: Database["public"]["Enums"]["role_permission"] | null
-          role?: Database["public"]["Enums"]["role_enum"] | null
-        }
-        Relationships: []
-      }
-      service: {
-        Row: {
-          amount: number | null
-          created_at: string
-          currency: string | null
-          customer_id: string | null
-          dentist_id: string | null
-          id: string
-        }
-        Insert: {
-          amount?: number | null
-          created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          dentist_id?: string | null
-          id?: string
-        }
-        Update: {
-          amount?: number | null
-          created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          dentist_id?: string | null
-          id?: string
+          role_id?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "public_service_customer_id_fkey"
-            columns: ["customer_id"]
+            foreignKeyName: "user_role_role_id_fkey"
+            columns: ["role_id"]
             isOneToOne: false
-            referencedRelation: "customer"
+            referencedRelation: "roles"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "public_service_dentist_id_fkey"
-            columns: ["dentist_id"]
+            foreignKeyName: "user_role_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "dentist"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      service_line: {
-        Row: {
-          amount: number | null
-          created_at: string
-          currency: string | null
-          customer_id: string | null
-          dentist_id: string | null
-          description: string | null
-          id: string
-          name: string | null
-          service_id: string | null
-          teeth_id: string | null
-        }
-        Insert: {
-          amount?: number | null
-          created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          dentist_id?: string | null
-          description?: string | null
-          id?: string
-          name?: string | null
-          service_id?: string | null
-          teeth_id?: string | null
-        }
-        Update: {
-          amount?: number | null
-          created_at?: string
-          currency?: string | null
-          customer_id?: string | null
-          dentist_id?: string | null
-          description?: string | null
-          id?: string
-          name?: string | null
-          service_id?: string | null
-          teeth_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_service_line_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_service_line_dentist_id_fkey"
-            columns: ["dentist_id"]
-            isOneToOne: false
-            referencedRelation: "dentist"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_service_line_service_id_fkey"
-            columns: ["service_id"]
-            isOneToOne: false
-            referencedRelation: "service"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_service_line_teeth_id_fkey"
-            columns: ["teeth_id"]
-            isOneToOne: false
-            referencedRelation: "adult_teeth"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      tags: {
-        Row: {
-          created_at: string
-          id: string
-          tag: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          tag?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          tag?: string | null
-        }
-        Relationships: []
-      }
-      user_roles: {
-        Row: {
-          created_at: string
-          id: string
-          profile_id: string | null
-          role: Database["public"]["Enums"]["role_enum"] | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          profile_id?: string | null
-          role?: Database["public"]["Enums"]["role_enum"] | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          profile_id?: string | null
-          role?: Database["public"]["Enums"]["role_enum"] | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_user_role_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: true
-            referencedRelation: "profile"
+            referencedRelation: "user"
             referencedColumns: ["id"]
           },
         ]
@@ -818,35 +265,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      authorize: {
-        Args: {
-          requested_permission: Database["public"]["Enums"]["role_permission"]
-        }
-        Returns: boolean
-      }
-      custom_access_token_hook: {
-        Args: {
-          event: Json
-        }
-        Returns: Json
-      }
+      [_ in never]: never
     }
     Enums: {
-      appointment_state_enum: "SCHEDULED" | "CANCELED" | "REFOUND" | "FINISHED"
-      role_enum: "DENTIST" | "CUSTOMER" | "ADMINISTRATOR" | "PUBLISHER"
-      role_permission:
-        | "post.create"
-        | "post.delete"
-        | "post.update"
-        | "category.read"
-        | "category.create"
-        | "category.update"
-        | "category.delete"
-        | "tag.read"
-        | "tag.update"
-        | "tag.create"
-        | "tag.delete"
-      tooth_type_enum: "INCISORS" | "CANINES" | "PREMOLARS" | "MOLARS"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never

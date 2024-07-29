@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "react-quill/dist/quill.snow.css";
 import { siteConfig } from "@dentist/utils/site-configuration";
 import { ModalProvier } from "@dentist/components/providers/modal/modal-provier";
 import { WriteBlogProvider } from "@dentist/views/dashboard-write-blog/context/write-blog-provider";

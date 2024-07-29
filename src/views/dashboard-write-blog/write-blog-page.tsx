@@ -10,12 +10,13 @@ interface WriteBlogPageProps {
 export const WriteBlogPage = async ({ blogId } : WriteBlogPageProps) => {
   const data = blogId ? await supabaseServerClient()
   .from('blog')
-  .select('*, blog_category(category(*))')
+  .select('*, category_blog(category(*))')
   .eq('id', blogId)
   .single() : null
+
   const categoryData = await supabaseServerClient().from('category').select()
 
-  const categories = data?.data?.blog_category.map(({ category }) => ({id: category?.id ?? '', name: category?.category ?? ''}))
+  const categories = data?.data?.category_blog.map(({ category }) => ({id: category?.id ?? '', name: category?.category ?? ''}))
 
   return (
     <>
