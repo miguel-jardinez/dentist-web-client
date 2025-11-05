@@ -37,9 +37,8 @@ export const createDraftBlogAction = async (): Promise<RequestState<string>> => 
 
 export const deleteBlog = async (blogId: string): Promise<RequestState<boolean>> => {
   try {
-    console.log(blogId)
-    const data = await supabaseServerClient().from('blog').delete().eq('id', blogId).select('*').single()
 
+    const data = await supabaseServerClient().from('blog').delete().eq('id', blogId)
 
     console.log(data)
 

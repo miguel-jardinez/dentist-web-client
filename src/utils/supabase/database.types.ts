@@ -110,6 +110,24 @@ export type Database = {
           },
         ]
       }
+      debug_log: {
+        Row: {
+          log_id: number
+          log_message: string | null
+          log_time: string | null
+        }
+        Insert: {
+          log_id?: number
+          log_message?: string | null
+          log_time?: string | null
+        }
+        Update: {
+          log_id?: number
+          log_message?: string | null
+          log_time?: string | null
+        }
+        Relationships: []
+      }
       feature_flag: {
         Row: {
           active: boolean | null
@@ -265,7 +283,26 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      authorize: {
+        Args: {
+          p_user_id: string
+          p_permission_name: string
+        }
+        Returns: boolean
+      }
+      authorize_admin: {
+        Args: {
+          p_user_id: string
+        }
+        Returns: boolean
+      }
+      authorize_role: {
+        Args: {
+          p_user_id: string
+          p_permission_name: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

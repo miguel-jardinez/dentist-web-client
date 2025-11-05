@@ -10,6 +10,8 @@ const Page = async ({ params } : { params: { slug: string } }) => {
     .eq('slug', params.slug)
     .single()
 
+  console.log(data.data)
+
   if (!data.error) {
     return <DashboardBlogContentPage blogData={blogMapper(data.data)} />
   }
