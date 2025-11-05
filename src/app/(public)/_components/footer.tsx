@@ -83,28 +83,35 @@ export const Footer = () => {
               <div className='flex items-center justify-center lg:justify-start'>
                   <p className='text-white text-xs'>Todos los derechos reservados 2024</p>
               </div>
-              <div className='flex items-center justify-center mt-5 lg:mt-0 lg:justify-end gap-4'>
-                  <Link href="https://www.instagram.com/perladelesmalte/" target='_blank'>
-                  <div 
-                    className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
-                    >
-                    <FaInstagram />
-                  </div>
-                  </Link>
-                  <Link href="https://www.facebook.com/perladelesmalte" target='_blank'>
-                  <div 
-                    className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
-                    >
-                    <FaFacebook />
-                  </div>
-                  </Link>
-                  <Link href="https://www.tiktok.com/@perladelesmalte" target='_blank'>
-                  <div 
-                    className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
-                    >
-                    <FaTiktok />
-                  </div>
-                  </Link>
+              <div className='flex items-center justify-end gap-4'>
+                <div className='flex items-center'>
+                  <Link href="/terminos-y-condiciones" className='text-white text-xs font-medium underline'>Términos y condiciones</Link>
+                  <span className='text-white mx-2'>|</span>
+                  <Link href="/politica-de-privacidad" className='text-white text-xs font-medium underline'>Política de privacidad</Link>
+                </div>
+                <div className='flex items-center justify-center mt-5 lg:mt-0 lg:justify-end gap-4'>
+                    <Link href="https://www.instagram.com/perladelesmalte/" target='_blank'>
+                    <div 
+                      className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
+                      >
+                      <FaInstagram />
+                    </div>
+                    </Link>
+                    <Link href="https://www.facebook.com/perladelesmalte" target='_blank'>
+                    <div 
+                      className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
+                      >
+                      <FaFacebook />
+                    </div>
+                    </Link>
+                    <Link href="https://www.tiktok.com/@perladelesmalte" target='_blank'>
+                    <div 
+                      className='cursor-pointer rounded-full h-8 w-8 flex items-center justify-center text-destructive-foreground bg-primary'
+                      >
+                      <FaTiktok />
+                    </div>
+                    </Link>
+                </div>
               </div>
             </div>
         </section>
