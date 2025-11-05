@@ -1,7 +1,7 @@
 const Page = () => {
    return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto max-w-3xl px-4 py-10 space-y-10">
+      <div className="container mx-auto max-w-3xl px-4 py-10 space-y-10 pt-32">
         <header className="space-y-3">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Perla del Esmalte

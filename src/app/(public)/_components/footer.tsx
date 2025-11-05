@@ -10,7 +10,6 @@ const footerWhatsAppMessage = encodeURIComponent('Hola, Me gustaría agendar una
 
 export const Footer = () => {
   return (
-    <AnimatedReveal>
       <footer>
         <section className='py-10 text-blue-950'>
           <div className='container m-auto grid lg:grid-cols-2 grid-cols-1'>
@@ -116,6 +115,5 @@ export const Footer = () => {
             </div>
         </section>
       </footer>
-    </AnimatedReveal>
   )
 }
