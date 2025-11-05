@@ -4,7 +4,6 @@ import "./globals.css";
 import "react-quill/dist/quill.snow.css";
 import { siteConfig } from "@dentist/utils/site-configuration";
 import { ModalProvier } from "@dentist/components/providers/modal/modal-provier";
-import { WriteBlogProvider } from "@dentist/views/dashboard-write-blog/context/write-blog-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +24,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={inter.className}>
-        <WriteBlogProvider>
-          <ModalProvier>
-              {children}
-          </ModalProvier>
-        </WriteBlogProvider>
+        <ModalProvier>
+            {children}
+        </ModalProvier>
       </body>
     </html>
   );
